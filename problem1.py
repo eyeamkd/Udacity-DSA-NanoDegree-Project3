@@ -1,4 +1,6 @@
 def get_square_root(number:int): 
+    if( type(number) is not int): 
+        raise ValueError("Only integer input supported") 
     if(number==1 or number ==0):
         return number
     low = 2
@@ -14,6 +16,4 @@ def get_square_root(number:int):
         if(mid*mid >= number):
             high = mid
         else:
-            low = mid 
-
-print(get_square_root(27))
+            low = mid
