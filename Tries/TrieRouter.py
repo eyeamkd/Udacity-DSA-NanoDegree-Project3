@@ -13,23 +13,24 @@ def check_and_remove_trailing(path:str):
 
 class RouteTrieNode:
     
-    def __init__(self, path:str) -> None:
+    def __init__(self, path) -> None:
         self.children = {} 
         self.route = False 
+        self.route_path = path 
 
 
 class RouteTrie:
     def __init__(self, handler:str, not_found_handler:str) -> None:
-        root_node = RouteTrieNode('/')
+        root_node = RouteTrieNode('root')
         self.root = root_node 
         self.handler = handler
         self.not_found_handler = not_found_handler 
     
     
-    def insert(self, path:str)-> None: 
+    def insert(self, path:str)-> None:  
         path = check_and_remove_trailing(path)
         paths = path.split('/') 
-        print("paths are ", paths)
+        #print("paths are ", paths)
         base_node = self.root 
         for sub_path in paths: 
             if(len(sub_path)>0):
@@ -43,19 +44,29 @@ class RouteTrie:
                     
     
     def find(self, path): 
+        base_node = self.root
+        if path =='/':
+           return self.return_handler(path, base_node.route_path  )
         path = check_and_remove_trailing(path)
         paths = path.split('/') 
-        base_node = self.root
         for sub_path in paths:
             if(len(sub_path)>0):
                 if sub_path in base_node.children:
                     base_node = base_node.children[sub_path]
-                else:
-                    return self.not_found_handler 
+                else: 
+                  return self.return_404(path)
+                      
         print("Paths are ", paths) 
         print("base_node is", base_node.children.keys()) 
         if base_node.route:
-            return self.handler
+           return self.return_handler(path,base_node.route_path ) 
+        
+    def return_handler(self,route_name:str,sub_path:str):
+       return "Handler for the Route {} is {}".format(route_name,sub_path + " " +self.handler) 
+        
+    
+    def return_404(self, route_name:str):
+       return "Oops! for the given route {} is {}".format(route_name, self.not_found_handler)
          
 
 
@@ -68,8 +79,7 @@ new_trie.insert("/about/portfolio")
 new_trie.insert("/ideas") 
 new_trie.insert("/goals")
 
-print(new_trie.root.children['about'].children.keys()) 
-print(new_trie.find('/about/portfolio')) 
+print(new_trie.find('/')) 
 
 #edge cases 
 # /empty trail 
