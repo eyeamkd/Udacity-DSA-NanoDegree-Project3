@@ -2,6 +2,19 @@ class TrieNode():
     def __init__(self) -> None:
         self.children = { } 
         self.word = False
+    
+    def insert(self, char): 
+        self.children[char] = {}
+        pass 
+
+    def suffixes(self, suffix=""):
+        if self.word:
+            return suffix 
+        keys = self.children.keys() 
+        for char in keys: 
+            node = self.children[char]
+            node.suffixes(suffix+char)
+        
 
 class Trie():  
     def __init__(self):
@@ -46,7 +59,7 @@ class Trie():
         suffixes = [] 
         node = self.get_trie_node(word) 
         keys = node.children.keys() 
-        print("keys for the word", word, "are ", keys)
+        #print("keys for the word", word, "are ", keys)
         for char in keys:
             self.recursive_suffix_search(node.children[char],word+char, suffixes)
         return suffixes 
@@ -77,20 +90,28 @@ wordList = [
     "ant", "anthology", "antagonist", "antonym", 
     "fun", "function", "factory", 
     "trie", "trigger", "trigonometry", "tripod"
-]
+] 
+
 for word in wordList:
     MyTrie.add(word) 
 
-from ipywidgets import widgets
-from IPython.display import display
-from ipywidgets import interact
-def f(prefix):
-    if prefix != '':
-        prefixNode = MyTrie.find(prefix)
-        if prefixNode:
-            print('\n'.join(prefixNode.suffixes()))
-        else:
-            print(prefix + " not found")
-    else:
-        print('')
-interact(f,prefix='');
+print(MyTrie.get_suffixes('a'))
+print(MyTrie.get_suffixes('an'))
+print(MyTrie.get_suffixes('f'))
+print(MyTrie.get_suffixes('tr'))
+print(MyTrie.get_suffixes('fa'))
+print(MyTrie.get_suffixes('anto'))
+
+# from ipywidgets import widgets
+# from IPython.display import display
+# from ipywidgets import interact
+# def f(prefix):
+#     if prefix != '':
+#         prefixNode = MyTrie.find(prefix)
+#         if prefixNode:
+#             print('\n'.join(prefixNode.suffixes()))
+#         else:
+#             print(prefix + " not found")
+#     else:
+#         print('')
+# interact(f,prefix='');
