@@ -1,27 +1,40 @@
-from numpy import left_shift
-
-
-def merge_sort_divide(arr:list)->list: 
+def merge_sort_divide(arr: list) -> list:
     # divide routine 
-    length = len(arr) 
-    if(length==1): 
-        return arr[0] 
-    half_index = length//2 
-    left_half =  merge_sort_divide(arr[0:half_index])
-    right_half = merge_sort_divide(arr[half_index:]) 
+    length = len(arr)
+    if length == 1:
+        return arr
+    half_index = length // 2
+    left_half = merge_sort_divide(arr[:half_index])
+    right_half = merge_sort_divide(arr[half_index:])
     # sort half routine  
-     
+
     # merge divided half routine  
-    return merge_sort(left_half, right_half) 
-    pass
+    return merge(left_half, right_half)
 
-def merge_sort(arr1:list,arr2:list)->list:  
-    if(arr1[0]>arr2[0]):
-        return [arr1[0],arr2[0]]
-    else:
-        return [arr2[0],arr1[0]]
-    
-    pass
 
-def merge(arr:list)->list:
-    pass 
+def copy_arr(source: list, destination: list) -> list:
+    for element in source:
+        destination.append(element)
+    return destination
+
+
+def merge(arr1: list, arr2: list) -> list:
+    merged_array = []
+    while len(arr1) != 0 or len(arr2) != 0:
+        if len(arr1) == 0:
+            merged_array = copy_arr(arr2, merged_array)
+            return merged_array
+        elif len(arr2) == 0:
+            merged_array = copy_arr(arr1, merged_array)
+            return merged_array
+        elif arr1[0] < arr2[0]:
+            merged_array.append(arr1[0])
+            arr1.remove(arr1[0])
+        else:
+            merged_array.append(arr2[0])
+            arr2.remove(arr2[0])
+
+
+# test case for the merge
+result = merge_sort_divide([3, 6, 9, 1, 2, 4])
+print(result)
