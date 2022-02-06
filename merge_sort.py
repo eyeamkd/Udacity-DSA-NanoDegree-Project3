@@ -4,12 +4,11 @@ def merge_sort_divide(arr: list) -> list:
     if length == 1:
         return arr
     half_index = length // 2
-    left_half = merge_sort_divide(arr[:half_index])
-    right_half = merge_sort_divide(arr[half_index:])
-    # sort half routine  
+    sorted_left_half = merge_sort_divide(arr[:half_index])
+    sorted_right_half = merge_sort_divide(arr[half_index:])
 
     # merge divided half routine  
-    return merge(left_half, right_half)
+    return merge(sorted_left_half, sorted_right_half)
 
 
 def copy_arr(source: list, destination: list) -> list:
