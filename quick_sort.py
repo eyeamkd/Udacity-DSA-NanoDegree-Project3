@@ -1,6 +1,3 @@
-from urllib3 import Retry
-
-
 def quick_sort(arr:list)->list: 
     if len(arr) <= 1:
         return arr 
@@ -36,7 +33,7 @@ def quick_sort_in_place(arr:list)->list:
         element_index = 0
         while pivot_index > element_index:
             if arr[element_index] > arr[pivot_index]: 
-                if(len(arr)>3): 
+                if(pivot_index-element_index>=2): 
                     prev_index = pivot_index - 1
                     temp = arr[prev_index] 
                     pivot = arr[pivot_index]
@@ -56,14 +53,19 @@ def quick_sort_in_place(arr:list)->list:
                 # arr, pivot_index = in_place_sort(arr, pivot_index, element_index) 
         
         sorted_left_half = quick_sort_in_place(arr[:pivot_index])
-        sorted_right_half = quick_sort_in_place(arr[pivot_index+1:])
-        return sorted_left_half+[arr[pivot_index]]+sorted_right_half 
+        sorted_right_half = quick_sort_in_place(arr[pivot_index:])
+        return sorted_left_half+sorted_right_half 
     elif len(arr)==2:
-        if arr[0]>arr[1]: 
-            new_arr = [arr[1], arr[2]]
-            return new_arr
+        if arr[0]>arr[1]:  
+            new_arr = [arr[1], arr[0]] 
+            return new_arr 
+        else:
+            return arr
     else:
         return arr    
 
-print( quick_sort_in_place([5,6,1,3,2,8,0,4]))     
+print( quick_sort_in_place([8, 3, 1, 7, 0, 10, 2]))      
+print(quick_sort_in_place([7,3,8,10]))
+print(quick_sort_in_place([96, 97, 98]))
+print(quick_sort_in_place([1, 0]))
         
