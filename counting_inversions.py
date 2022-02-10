@@ -10,8 +10,8 @@ def divide_array(arr:list):
     mid = length//2 
     left_half = arr[:mid]
     right_half = arr[mid:]
-    divide_array(left_half)
-    divide_array(right_half) 
+    
+    merged_array = merge(left_half,right_half)
      
 
 def merge(left_half:list,right_half:list)->list:
