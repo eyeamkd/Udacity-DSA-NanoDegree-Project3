@@ -23,4 +23,19 @@ def binary_search(arr, element, low, high):
            return binary_search(arr,element,low,mid-1)
     return None 
 
-print(pair_sum([2, 7, 11, 15], 9))
+def pair_sum_two_pointer(arr:list, target:int)->list: 
+    arr.sort()
+    low_pointer = 0
+    high_pointer = len(arr) - 1 
+    
+    while low_pointer < high_pointer: 
+        sum = arr[low_pointer] + arr[high_pointer]
+        if sum == target:
+            return [arr[low_pointer], arr[high_pointer]] 
+        elif sum < target:
+            low_pointer+=1
+        else:
+            high_pointer-=1 
+    return [None, None]    
+
+print(pair_sum_two_pointer([2, 7, 11, 15], 9))
