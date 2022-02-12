@@ -1,6 +1,7 @@
 class PriorityQueue:
-    def __init__(self) -> None: 
-        self.cbt= [] 
+    def __init__(self, initial_size) -> None: 
+        self.cbt= [None for _ in range(initial_size)] 
+        self.next_index = 0
         pass 
     
     def insert(self, value:int, priority:int): 
