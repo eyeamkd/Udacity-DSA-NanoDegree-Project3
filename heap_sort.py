@@ -77,6 +77,8 @@ class Heap():
                 else:
                     self.swap(index,index_child2)  
                     index = index_child2 
+            else:
+                break 
 
             
             
@@ -89,7 +91,7 @@ def heap_sort(arr:list)->list:
     # convert the array into a max_heap 
     for element in arr:
         heap.insert(element) 
-    heap.print_heap() 
+    #heap.print_heap() 
     # re-arrange the elements of the array in order to sort them out 
     pointer1 = 0;
     pointer2 = len(heap.cbt) - 1
@@ -102,4 +104,7 @@ def heap_sort(arr:list)->list:
           
         
         
-heap_sort([8,9,4,5,6,7,2,3,1,0])
+heap_sort([3, 7, 4, 6, 1, 0, 9, 8, 9, 4, 3, 5])
+heap_sort([5, 5, 5, 3, 3, 3, 4, 4, 4, 4]) 
+heap_sort([99]) 
+heap_sort( [0, 1, 2, 5, 12, 21, 0])
