@@ -60,5 +60,5 @@ def fast_select(arr:list):
      
 
 
-print(kth_largest([6, 80, 36, 8, 23, 7, 10, 12, 42],5))
+print(kth_largest( [6, 80, 36, 8, 23, 7, 10, 12, 42, 99],10))
          
