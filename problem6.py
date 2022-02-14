@@ -1,8 +1,6 @@
 def get_min_max(input:list): 
     max = -9999 
     min = 100000 
-    min_sum = 0
-    max_sum = 0 
     
     for i in input:
         if i < min:
