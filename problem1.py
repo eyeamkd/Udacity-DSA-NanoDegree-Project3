@@ -1,5 +1,5 @@
 def sqrt(number:int): 
-    if( type(number) is not int): 
+    if( type(number) is not int and number is not None): 
         raise ValueError("Only integer input supported") 
     if(number==1 or number ==0):
         return number
@@ -29,6 +29,10 @@ print ("Pass" if  (3 == sqrt(9)) else "Fail")
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
 print ("Pass" if  (4 == sqrt(16)) else "Fail")
 print ("Pass" if  (1 == sqrt(1)) else "Fail")
-print ("Pass" if  (5 == sqrt(27)) else "Fail") 
+print ("Pass" if  (5 == sqrt(27)) else "Fail")   
+#edge cases
+print ("Pass" if  (5 == sqrt("two")) else "Fail")  
+print ("Pass" if  (5 == sqrt(None)) else "Fail")  
+
 
 # print(binary_search(2,16,16))
