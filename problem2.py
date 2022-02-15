@@ -1,16 +1,19 @@
 def rotated_array_search(arr,value)->int: 
     # arr = input[0]
     # value = input[1]
-    # pivot_search   
-    pivot_index = pivot_search(arr,0,len(arr)-1) 
-    #print("Pivot index is", pivot_index)
-    if arr[pivot_index] == value:
-        return pivot_index
-    # print(pivot) 
-    if arr[0]<=value<=arr[pivot_index]:
-        return binary_search(arr,0,pivot_index,value)
+    # pivot_search    
+    if len(arr)>0 and value is not None:
+        pivot_index = pivot_search(arr,0,len(arr)-1) 
+        #print("Pivot index is", pivot_index)
+        if arr[pivot_index] == value:
+            return pivot_index
+        # print(pivot) 
+        if arr[0]<=value<=arr[pivot_index]:
+            return binary_search(arr,0,pivot_index,value)
+        else:
+            return binary_search(arr,pivot_index+1,len(arr)-1, value) 
     else:
-       return binary_search(arr,pivot_index+1,len(arr)-1, value)
+        raise ValueError("Invalid Input")
     
     # binary_search on the appropriate half  
     # return target index 
@@ -56,7 +59,7 @@ def linear_search(input_list, number):
 def test_function(test_case):
     input_list = test_case[0]
     number = test_case[1]
-    if linear_search(input_list, number) == rotated_array_search(input_list, number):
+    if linear_search(input_list, number) == rotated_array_search(input_list, number): 
         print("Pass")
     else:
         print("Fail")
@@ -65,7 +68,13 @@ test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 8])
 test_function([[6, 7, 8, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 10]) 
+test_function([[6, 7, 8, 1, 2, 3, 4], 10])  
+# edge cases
+test_function([[6, 7, 8, 1, 2, 3, 4], 20]) 
+test_function([[6, 7, 8, 1, 2, 3, 4], None]) 
+test_function([[], 3]) 
+
+# 
 
 #print(rotated_array_search([4,5,6,7,0,1,2],0))
     
