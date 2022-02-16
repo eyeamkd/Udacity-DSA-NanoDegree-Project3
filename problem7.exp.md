@@ -25,7 +25,12 @@ lookup --> used to search through the dictionary trie structure and find out if 
 return_404(): returns a message along with the not found handler
 ## Modular Time and Space Complexity: 
 
-init():
+init for RouteTrieNode():
+Time Complexity: O(1)
+Space Complexity: O(1) 
+The Time Complexity of O(1) is absolutely clear as there are no major computations happening, and I think this the same reason for the space complexity as we do not need any auxillary space here so the space complexity is also (1) 
+
+init for Router():
 Time Complexity: O(1)
 Space Complexity: O(1) 
 The Time Complexity of O(1) is absolutely clear as there are no major computations happening, and I think this the same reason for the space complexity as we do not need any auxillary space here so the space complexity is also O(1)

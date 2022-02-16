@@ -11,7 +11,12 @@ With each letter that typed into the text box, the function traverses through th
 functions in TrieNode: 
 
 
-init():
+init for TrieNode():
+Time Complexity: O(1)
+Space Complexity: O(1) 
+These are O(1) because they don't have a direct correlation with the input size, i.e they are independent of the input size 
+
+init for Trie():
 Time Complexity: O(1)
 Space Complexity: O(1) 
 These are O(1) because they don't have a direct correlation with the input size, i.e they are independent of the input size
