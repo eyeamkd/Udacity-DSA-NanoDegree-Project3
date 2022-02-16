@@ -8,7 +8,13 @@ With each letter that typed into the text box, the function traverses through th
 ## Modular Time and Space Complexity  
 
 
-functions in TrieNode:
+functions in TrieNode: 
+
+
+init():
+Time Complexity: O(1)
+Space Complexity: O(1) 
+These are O(1) because they don't have a direct correlation with the input size, i.e they are independent of the input size
 
 insert():
 Time Complexity : O(1) 
@@ -18,7 +24,12 @@ suffixes():
 not used in the functionality 
 
 
-functions in Trie:
+functions in Trie: 
+
+init():
+Time Complexity: O(1)
+Space Complexity: O(1) 
+These are O(1) because they don't have a direct correlation with the input size, i.e they are independent of the input size
 
 add():
 Time Complexity: O(k), 'k' is the number of characters in the word being added 
